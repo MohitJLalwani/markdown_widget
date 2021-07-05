@@ -7,18 +7,18 @@ import 'p.dart';
 InlineSpan getLinkSpan(m.Element element) =>
     WidgetSpan(child: defaultAWidget(element));
 
-Widget defaultAWidget(m.Element element) {
-  PConfig pConfig = StyleConfig().pConfig;
-  final url = element.attributes['href'];
+Widget defaultAWidget(m.Element? element) {
+  PConfig pConfig = StyleConfig().pConfig!;
+  final url = element!.attributes['href'];
   final linkWidget = P().getPWidget(
-    element.children,
+    element.children!,
     element,
-    textStyle: pConfig?.linkStyle ?? defaultLinkStyle,
+    textStyle: pConfig.linkStyle ?? defaultLinkStyle,
     selectable: false,
   );
-  return pConfig?.linkGesture?.call(linkWidget, url) ??
+  return pConfig.linkGesture!.call(linkWidget, url!) ??
       GestureDetector(
         child: linkWidget,
-        onTap: () => pConfig?.onLinkTap?.call(url),
+        onTap: () => pConfig.onLinkTap!.call(url),
       );
 }

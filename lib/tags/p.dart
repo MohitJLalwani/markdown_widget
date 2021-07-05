@@ -13,29 +13,29 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 class P {
   P._internal();
 
-  static P _instance;
+  static P? _instance;
 
   factory P() {
     _instance ??= P._internal();
-    return _instance;
+    return _instance!;
   }
 
   ///Tag:  p
   Widget getPWidget(
-    List<m.Node> children,
-    m.Node parentNode, {
-    TextStyle textStyle,
-    bool selectable,
-    TextConfig textConfig,
+    List<m.Node>? children,
+    m.Node? parentNode, {
+    TextStyle? textStyle,
+    bool? selectable,
+    TextConfig? textConfig,
     WrapCrossAlignment crossAxisAlignment = WrapCrossAlignment.center,
   }) {
     final configSelectable =
         selectable ?? StyleConfig().pConfig?.selectable ?? true;
     return isWeb()
-        ? buildWebRichText(children, parentNode, textStyle, configSelectable,
-            crossAxisAlignment, textConfig)
+        ? buildWebRichText(children!, parentNode!, textStyle!, configSelectable,
+            crossAxisAlignment, textConfig!)
         : buildRichText(
-            children, parentNode, textStyle, configSelectable, textConfig);
+            children!, parentNode!, textStyle!, configSelectable, textConfig!);
   }
 
   bool isWeb() => kIsWeb;
@@ -52,7 +52,7 @@ class P {
       TextConfig textConfig) {
     if (nodes == null) return Container();
     List<Widget> children = [];
-    final config = StyleConfig()?.pConfig;
+    final config = StyleConfig().pConfig;
     buildBlockWidgets(
         nodes,
         parentNode,
@@ -86,7 +86,7 @@ class P {
   }
 
   InlineSpan getBlockSpan(
-      List<m.Node> nodes, m.Node parentNode, TextStyle parentStyle,
+      List<dynamic> nodes, m.Node parentNode, TextStyle parentStyle,
       {bool selectable = true}) {
     if (nodes == null || nodes.isEmpty) return TextSpan();
     return TextSpan(
@@ -106,7 +106,7 @@ class P {
             if (node.tag == input) return getInputSpan(node);
             if (node.tag == other) return getOtherWidgetSpan(node);
             return getBlockSpan(
-              node.children,
+              node.children!,
               node,
               parentStyle.merge(getTextStyle(node.tag)),
               selectable: selectable,
@@ -158,7 +158,7 @@ class P {
           widgets.add(getOtherWidget(node));
         else
           buildBlockWidgets(
-              node.children,
+              node.children!,
               node,
               parentStyle.merge(getTextStyle(node.tag)),
               widgets,
@@ -204,16 +204,16 @@ class P {
 }
 
 class PConfig {
-  final TextStyle textStyle;
-  final TextStyle linkStyle;
-  final TextStyle delStyle;
-  final TextStyle emStyle;
-  final TextStyle strongStyle;
-  final TextConfig textConfig;
-  final bool selectable;
-  final OnLinkTap onLinkTap;
-  final LinkGesture linkGesture;
-  final Custom custom;
+  final TextStyle? textStyle;
+  final TextStyle? linkStyle;
+  final TextStyle? delStyle;
+  final TextStyle? emStyle;
+  final TextStyle? strongStyle;
+  final TextConfig? textConfig;
+  final bool? selectable;
+  final OnLinkTap? onLinkTap;
+  final LinkGesture? linkGesture;
+  final Custom? custom;
 
   PConfig({
     this.textStyle,
@@ -230,8 +230,8 @@ class PConfig {
 }
 
 class TextConfig {
-  final TextAlign textAlign;
-  final TextDirection textDirection;
+  final TextAlign? textAlign;
+  final TextDirection? textDirection;
 
   TextConfig({this.textAlign, this.textDirection});
 }

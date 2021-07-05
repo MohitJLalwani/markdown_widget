@@ -7,11 +7,11 @@ InlineSpan getOtherWidgetSpan(m.Element node) =>
 
 Widget getOtherWidget(m.Element node) {
   final customWidget = StyleConfig().pConfig?.custom;
-  final m.Element customNode = node.children[0];
+  final m.Element customNode = node!.children![0];
   if (customWidget != null) {
-    return customWidget.call(customNode);
+    return customWidget.call(customNode!);
   } else {
-    print('Uncatch Node:${customNode.tag}');
+    print('Uncatch Node:${customNode!.tag}');
     return Container();
   }
 }

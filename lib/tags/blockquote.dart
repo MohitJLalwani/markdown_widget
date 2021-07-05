@@ -6,11 +6,11 @@ import 'p.dart';
 class Bq {
   Bq._internal();
 
-  static Bq _instance;
+  static Bq? _instance;
 
   factory Bq() {
     _instance ??= Bq._internal();
-    return _instance;
+    return _instance!;
   }
 
   Widget getBlockQuote(m.Element node) {
@@ -25,7 +25,7 @@ class Bq {
           ),
           color: config?.backgroundColor),
       padding: EdgeInsets.only(left: config?.leftSpace ?? 10),
-      child: P().getPWidget(node.children, node,
+      child: P().getPWidget(node.children!, node,
           textStyle: config?.blockStyle ?? defaultBlockStyle,
           textConfig: config?.textConfig),
     );
@@ -33,12 +33,12 @@ class Bq {
 }
 
 class BlockQuoteConfig {
-  final TextStyle blockStyle;
-  final TextConfig textConfig;
-  final Color blockColor;
-  final Color backgroundColor;
-  final double blockWidth;
-  final double leftSpace;
+  final TextStyle? blockStyle;
+  final TextConfig? textConfig;
+  final Color? blockColor;
+  final Color? backgroundColor;
+  final double? blockWidth;
+  final double? leftSpace;
 
   BlockQuoteConfig({
     this.blockStyle,

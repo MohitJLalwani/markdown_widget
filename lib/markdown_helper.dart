@@ -14,7 +14,7 @@ import 'tags/ul.dart';
 export 'tags/markdown_tags.dart';
 
 class MarkdownHelper {
-  WidgetConfig wConfig;
+  WidgetConfig? wConfig;
 
   MarkdownHelper({this.wConfig});
 
@@ -23,8 +23,8 @@ class MarkdownHelper {
       MTitle().getTitleWidget(node, tag);
 
   ///p
-  Widget getPWidget(m.Element node) =>
-      wConfig?.p?.call(node) ?? P().getPWidget(node.children, node);
+  Widget getPWidget(m.Element? node) =>
+      wConfig?.p?.call(node!) ?? P().getPWidget(node!.children!, node);
 
   ///pre
   Widget getPreWidget(m.Node node) =>

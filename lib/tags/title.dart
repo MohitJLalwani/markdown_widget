@@ -7,19 +7,19 @@ import 'markdown_tags.dart';
 class MTitle {
   MTitle._internal();
 
-  static MTitle _instance;
+  static MTitle? _instance;
 
   factory MTitle() {
     _instance ??= MTitle._internal();
-    return _instance;
+    return _instance!;
   }
 
   ///h1~h6
-  Widget getTitleWidget(m.Element node, String tag) {
-    Widget titleWidget;
+  Widget getTitleWidget(m.Node node, String tag) {
+    Widget? titleWidget;
     switch (tag) {
       case h1:
-        titleWidget = textWithDivider(node, _titleStyle(28), h1);
+        titleWidget = textWithDivider(node!, _titleStyle(28), h1);
         break;
       case h2:
         titleWidget = textWithDivider(node, _titleStyle(25), h2);
@@ -37,7 +37,7 @@ class MTitle {
         titleWidget = textWithDivider(node, _titleStyle(12), h6);
         break;
     }
-    return titleWidget;
+    return titleWidget!;
   }
 
   TextStyle _titleStyle(double fontSize) => TextStyle(
@@ -51,7 +51,7 @@ class MTitle {
   Widget textWithDivider(m.Element node, TextStyle style, String tag) {
     final config = StyleConfig().titleConfig;
     bool showDivider = config?.showDivider ?? true;
-    TextStyle configStyle;
+    TextStyle? configStyle;
     switch (tag) {
       case h1:
         configStyle = config?.h1;
@@ -75,7 +75,7 @@ class MTitle {
     final child = P().getPWidget(node.children, node,
         textStyle: (configStyle ?? style).merge(config?.commonStyle),
         textConfig: config?.textConfig);
-    final title = config?.titleWrapper?.call(child) ?? child;
+    final title = config?.titleWrapper!.call(child) ?? child;
 
     return showDivider
         ? Column(
@@ -92,18 +92,18 @@ class MTitle {
 }
 
 class TitleConfig {
-  final TextStyle h1;
-  final TextStyle h2;
-  final TextStyle h3;
-  final TextStyle h4;
-  final TextStyle h5;
-  final TextStyle h6;
-  final TextStyle commonStyle;
-  final TextConfig textConfig;
-  final TitleWrapper titleWrapper;
-  final bool showDivider;
-  final Widget divider;
-  final double space;
+  final TextStyle? h1;
+  final TextStyle? h2;
+  final TextStyle? h3;
+  final TextStyle? h4;
+  final TextStyle? h5;
+  final TextStyle? h6;
+  final TextStyle? commonStyle;
+  final TextConfig? textConfig;
+  final TitleWrapper? titleWrapper;
+  final bool? showDivider;
+  final Widget? divider;
+  final double? space;
 
   TitleConfig(
       {this.h1,

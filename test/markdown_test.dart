@@ -21,7 +21,7 @@ void printNode(m.Node node, int deep) {
   } else if (node is m.Element) {
     print('${'  ' * deep}Tag:${node.tag}   attr:${node.attributes}');
     if (node.children == null) return;
-    node.children.forEach((n) {
+    node.children!.forEach((n) {
       printNode(n, deep + 1);
     });
   }

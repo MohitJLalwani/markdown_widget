@@ -8,11 +8,11 @@ import 'markdown_tags.dart';
 class Ol {
   Ol._internal();
 
-  static Ol _instance;
+  static Ol? _instance;
 
   factory Ol() {
     _instance ??= Ol._internal();
-    return _instance;
+    return _instance!;
   }
 
   Widget getOlWidget(m.Element rootNode, int deep) {
@@ -37,7 +37,7 @@ class Ol {
     final children = rootNode?.children;
     final List<m.Node> otherTagNodes = [];
     List<Widget> listChildren = [];
-    for (var node in children) {
+    for (var node in children!) {
       if (node is m.Element && node.tag == ol) {
         final child = getOlWidget(node, deep + 1);
         listChildren.add(child);
@@ -75,8 +75,8 @@ class Ol {
   }
 
   Widget _getOlDot(int deep, int index) {
-    final Widget configWidget =
-        StyleConfig()?.olConfig?.indexWidget?.call(deep, index);
+    final Widget? configWidget =
+        StyleConfig().olConfig?.indexWidget?.call(deep, index);
 
     return configWidget ??
         Container(
@@ -87,13 +87,13 @@ class Ol {
 }
 
 class OlConfig {
-  final TextStyle textStyle;
-  final TextConfig textConfig;
-  final IndexWidget indexWidget;
-  final OlWrapper olWrapper;
-  final double leftSpacing;
-  final bool selectable;
-  final CrossAxisAlignment crossAxisAlignment;
+  final TextStyle? textStyle;
+  final TextConfig? textConfig;
+  final IndexWidget? indexWidget;
+  final OlWrapper? olWrapper;
+  final double? leftSpacing;
+  final bool? selectable;
+  final CrossAxisAlignment? crossAxisAlignment;
 
   OlConfig(
       {this.textStyle,
