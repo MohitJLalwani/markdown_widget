@@ -27,7 +27,7 @@ class MarkdownWidget extends StatefulWidget {
   final TocController? controller;
 
   ///show loading before data is ready
-  final Widget? loadingWidget;
+  final loadingWidget;
 
   ///jump to position 0 when widget is updating
   final bool? clearPositionWhenUpdate;

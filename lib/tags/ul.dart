@@ -82,7 +82,7 @@ class Ul {
     final config = StyleConfig().ulConfig;
     final dotSize = config?.dotSize ?? 6;
     final marginTop =
-        (config?.textStyle?.fontSize ?? defaultPStyle?.fontSize ?? 14) / 2;
+        (config?.textStyle?.fontSize ?? defaultPStyle.fontSize ?? 14) / 2;
 
     return Container(
       width: dotSize,

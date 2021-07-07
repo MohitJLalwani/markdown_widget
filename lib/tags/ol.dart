@@ -16,7 +16,7 @@ class Ol {
   }
 
   Widget getOlWidget(m.Element rootNode, int deep) {
-    final children = rootNode?.children;
+    final children = rootNode.children;
     if (children == null) return Container();
     return Column(
       children: List.generate(
@@ -34,7 +34,7 @@ class Ol {
   }
 
   Widget _getLiWidget(m.Element rootNode, int deep, int index) {
-    final children = rootNode?.children;
+    final children = rootNode.children;
     final List<m.Node> otherTagNodes = [];
     List<Widget> listChildren = [];
     for (var node in children!) {

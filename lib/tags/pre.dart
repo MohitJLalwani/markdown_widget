@@ -84,7 +84,7 @@ typedef Widget PreWrapper(Widget preWidget, String text);
 
 class HighlightView extends StatelessWidget {
   /// The original code to be highlighted
-  final String? source;
+  final String source;
 
   final String? language;
   final bool? autoDetectionLanguage;
@@ -108,7 +108,7 @@ class HighlightView extends StatelessWidget {
     int tabSize = 8, // TODO: https://github.com/flutter/flutter/issues/50087
   }) : source = input!.replaceAll('\t', ' ' * tabSize);
 
-  List<TextSpan> _convert(List<hi.Node> nodes) {
+  List<TextSpan> _convert(List<hi.Node>? nodes) {
     List<TextSpan> spans = [];
     var currentSpans = spans;
     List<List<TextSpan>> stack = [];
@@ -134,7 +134,7 @@ class HighlightView extends StatelessWidget {
       }
     }
 
-    for (var node in nodes) {
+    for (var node in nodes!) {
       _traverse(node);
     }
     return spans;

@@ -22,7 +22,7 @@ class P {
 
   ///Tag:  p
   Widget getPWidget(
-    List<m.Node>? children,
+    List? children,
     m.Node? parentNode, {
     TextStyle? textStyle,
     bool? selectable,
@@ -44,7 +44,7 @@ class P {
   ///flutter web can't use WidgetSpan now.so this is another solution
   ///you can also use this in mobile，but it will finally be replaced by [buildRichText]
   Widget buildWebRichText(
-      List<m.Node> nodes,
+      List nodes,
       m.Node parentNode,
       TextStyle style,
       bool selectable,
@@ -66,8 +66,8 @@ class P {
     );
   }
 
-  RichText buildRichText(List<m.Node> children, m.Node parentNode,
-      TextStyle textStyle, bool selectable, TextConfig textConfig) {
+  RichText buildRichText(List children, m.Node parentNode, TextStyle textStyle,
+      bool selectable, TextConfig textConfig) {
     final config = StyleConfig().pConfig;
     return RichText(
       softWrap: true,
@@ -77,11 +77,11 @@ class P {
         textStyle ?? config?.textStyle ?? defaultPStyle,
         selectable: selectable,
       ),
-      textAlign: textConfig?.textAlign ??
+      textAlign: textConfig.textAlign ??
           config?.textConfig?.textAlign ??
           TextAlign.start,
       textDirection:
-          textConfig?.textDirection ?? config?.textConfig?.textDirection,
+          textConfig.textDirection ?? config?.textConfig?.textDirection,
     );
   }
 
@@ -130,13 +130,8 @@ class P {
     }
   }
 
-  void buildBlockWidgets(
-      List<m.Node> nodes,
-      m.Node parentNode,
-      TextStyle parentStyle,
-      List<Widget> widgets,
-      bool selectable,
-      TextConfig textConfig) {
+  void buildBlockWidgets(List nodes, m.Node parentNode, TextStyle parentStyle,
+      List<Widget> widgets, bool selectable, TextConfig textConfig) {
     if (nodes == null || nodes.isEmpty) return;
     nodes.forEach((node) {
       bool shouldParseHtml = needParseHtml(parentNode);
@@ -177,22 +172,22 @@ class P {
     TextConfig textConfig,
   ) {
     final nodes = shouldParseHtml ? parseHtml(node) : [];
-    final config = StyleConfig()?.pConfig;
+    final config = StyleConfig().pConfig;
     if (nodes.isEmpty) {
       widgets.add(selectable
           ? SelectableText(
               node.text,
               style: parentStyle,
-              textAlign: textConfig?.textAlign ?? config?.textConfig?.textAlign,
-              textDirection: textConfig?.textDirection ??
-                  config?.textConfig?.textDirection,
+              textAlign: textConfig.textAlign ?? config?.textConfig?.textAlign,
+              textDirection:
+                  textConfig.textDirection ?? config?.textConfig?.textDirection,
             )
           : Text(
               node.text,
               style: parentStyle,
-              textAlign: textConfig?.textAlign ?? config?.textConfig?.textAlign,
-              textDirection: textConfig?.textDirection ??
-                  config?.textConfig?.textDirection,
+              textAlign: textConfig.textAlign ?? config?.textConfig?.textAlign,
+              textDirection:
+                  textConfig.textDirection ?? config?.textConfig?.textDirection,
             ));
     } else {
       widgets.add(getPWidget(nodes, node,

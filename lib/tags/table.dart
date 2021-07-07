@@ -52,19 +52,19 @@ class MTable {
     _buildTh(node, thList);
 
     return TableRow(
-        decoration: config?.headerRowDecoration,
+        decoration: config.headerRowDecoration,
         children: List.generate(thList.length, (index) {
           final child = P().getPWidget(thList[index].children, thList[index],
-              textStyle: config?.headerStyle,
-              textConfig: config?.headerTextConfig);
-          return config?.headChildWrapper?.call(child) ?? child;
+              textStyle: config.headerStyle,
+              textConfig: config.headerTextConfig);
+          return config.headChildWrapper?.call(child) ?? child;
         }));
   }
 
   void _buildTh(m.Node node, List<m.Element> thList) {
     if (node != null && node is m.Element) {
       if (node.tag == th) thList.add(node);
-      List.generate(node?.children?.length ?? 0,
+      List.generate(node.children?.length ?? 0,
           (index) => _buildTh(node.children![index], thList));
     }
   }
@@ -83,8 +83,8 @@ class MTable {
         List<Widget> children = [];
         tdList.forEach((element) {
           final child = P().getPWidget(element.children, element,
-              textStyle: config?.bodyStyle, textConfig: config?.bodyTextConfig);
-          children.add(config?.bodyChildWrapper?.call(child) ?? child);
+              textStyle: config.bodyStyle, textConfig: config.bodyTextConfig);
+          children.add(config.bodyChildWrapper?.call(child) ?? child);
         });
         maxRowSize = max(maxRowSize, tdList.length);
         if (tdList.length < maxRowSize) {
@@ -92,7 +92,7 @@ class MTable {
             children.add(SizedBox());
         }
         final tableRow = TableRow(
-          decoration: config?.bodyRowDecoration,
+          decoration: config.bodyRowDecoration,
           children: children,
         );
         results.add(tableRow);

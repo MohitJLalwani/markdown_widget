@@ -16,8 +16,8 @@ class Hr {
     final HrConfig hrConfig = StyleConfig().hrConfig!;
 
     return Container(
-      height: hrConfig?.height ?? 2,
-      color: hrConfig?.color ?? defaultDividerColor,
+      height: hrConfig.height ?? 2,
+      color: hrConfig.color ?? defaultDividerColor,
     );
   }
 }

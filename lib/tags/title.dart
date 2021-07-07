@@ -19,7 +19,7 @@ class MTitle {
     Widget? titleWidget;
     switch (tag) {
       case h1:
-        titleWidget = textWithDivider(node!, _titleStyle(28), h1);
+        titleWidget = textWithDivider(node, _titleStyle(28), h1);
         break;
       case h2:
         titleWidget = textWithDivider(node, _titleStyle(25), h2);
@@ -48,7 +48,7 @@ class MTitle {
 
   Widget buildDivider() => Container(height: 1, color: defaultDividerColor);
 
-  Widget textWithDivider(m.Element node, TextStyle style, String tag) {
+  Widget textWithDivider(node, TextStyle style, String tag) {
     final config = StyleConfig().titleConfig;
     bool showDivider = config?.showDivider ?? true;
     TextStyle? configStyle;
@@ -72,6 +72,7 @@ class MTitle {
         configStyle = config?.h6;
         break;
     }
+    //final child = P().getPWidget(node.children, node,
     final child = P().getPWidget(node.children, node,
         textStyle: (configStyle ?? style).merge(config?.commonStyle),
         textConfig: config?.textConfig);
