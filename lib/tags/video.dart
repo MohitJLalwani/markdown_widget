@@ -23,11 +23,11 @@ Widget defaultVideoWidget(Map<String, String> attributes, {String? url}) {
     width: width,
     height: height,
     child: CheWieVideoWidget(
-      url: url! ?? attributes['src']!,
+      url: url!,
       config: config!,
     ),
   );
-  return config.wrapperBuilder!.call(video) ?? video;
+  return config.wrapperBuilder!.call(video);
 }
 
 typedef Widget VideoBuilder(String url, Map<String, String> attributes);

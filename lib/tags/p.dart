@@ -56,7 +56,7 @@ class P {
     buildBlockWidgets(
         nodes,
         parentNode,
-        style ?? config?.textStyle ?? defaultPStyle,
+        style == null ? style : config?.textStyle ?? defaultPStyle,
         children,
         selectable,
         textConfig);
@@ -74,7 +74,7 @@ class P {
       text: getBlockSpan(
         children,
         parentNode,
-        textStyle ?? config?.textStyle ?? defaultPStyle,
+        textStyle != null ? textStyle : config?.textStyle ?? defaultPStyle,
         selectable: selectable,
       ),
       textAlign: textConfig.textAlign ??

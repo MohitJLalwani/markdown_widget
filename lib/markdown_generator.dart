@@ -124,8 +124,9 @@ class MarkdownGenerator {
           'report bug:https://github.com/asjqkkkk/markdown_widget/issues/new/choose');
     return Container(
       child: result ?? Container(),
-      margin: childMargin ??
-          (result == null ? null : EdgeInsets.only(top: 5, bottom: 5)),
+      margin: childMargin != null
+          ? childMargin
+          : (result == null ? null : EdgeInsets.only(top: 5, bottom: 5)),
     );
   }
 
